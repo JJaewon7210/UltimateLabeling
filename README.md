@@ -7,7 +7,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/alexandre01/UltimateLabeling.svg?style=social)
 
 
-A multi-purpose Video Labeling (Annotation) GUI in Python with integrated with tracker. Serverless version for ultimatelabeling (alexandre01)
+A multi-purpose Video Labeling (Annotation) GUI in Python with integrated with tracker. Serverless version for [ultimatelabeling](https://github.com/foolwood/SiamMask)
 
 ## Features
 - Serverless SiamMask model for tracking boxes
