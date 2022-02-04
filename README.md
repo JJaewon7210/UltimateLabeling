@@ -54,7 +54,7 @@ python -m ultimatelabeling.main
 Download the pretrained SiamMask tracking model
 ```bash
 cd /ultimatelabeling/siamMask/pretrained
-wget http://www.robots.ox.ac.uk/~qwang/SiamMask_VOT.pth -P pretrained/
+wget http://www.robots.ox.ac.uk/~qwang/SiamMask_VOT.pth
 ```
 
 Please check the correct path for your directory from `ultimatelabeling\config.py`
