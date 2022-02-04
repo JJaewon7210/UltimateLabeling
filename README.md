@@ -13,12 +13,10 @@ A multi-purpose Video Labeling (Annotation) GUI in Python with integrated with t
 - Serverless SiamMask model for tracking boxes
 - Customizing the Label with double class
 - Zoom on video, resizable bounding boxes
-- Dark mode!
 
 ## Demo 
 <img src="docs/ultimatelabeling.jpg" width="90%" />
-
-<img src="docs/uptown_funk.jpg" width="45%" /> <img src="docs/roundabout.jpg" width="45%" />
+<img src="docs/roundabout.jpg" width="50%" />
 
 
 The integrated object detectors and trackers are based on the following codes:
