@@ -218,7 +218,7 @@ class ImageWidget(QWidget, StateListener, KeyboardListener):
         self.cursor_offset = None
         self.holding_ctrl = False
 
-        self.setFixedSize(900, 900)
+        self.setFixedSize(800, 800)
         self.setMouseTracking(True)
 
         self.current_frame = None
@@ -297,7 +297,9 @@ class ImageWidget(QWidget, StateListener, KeyboardListener):
     def draw_bboxes(self, img):
         for detection in self.state.track_info.detections:
             label = None if detection.class_id not in self.state.track_info.class_names else \
-                "{}, {}".format(self.state.track_info.class_names[detection.class_id], detection.track_id)
+                "{}, {}, {}".format(self.state.track_info.class_names[detection.class_id], self.state.track_info.action_names[detection.action_id] ,detection.track_id)
+            # label = None if detection.class_id not in self.state.track_info.class_names else \
+            #     "{}, {}".format(self.state.track_info.class_names[detection.class_id], detection.track_id)
             draw_detection(img, detection, kps_show_bbox=self.state.keypoints_show_bbox,
                            kps_instance_color=self.state.keypoints_instance_color, bbox_class_color=self.state.bbox_class_color,
                            label=label)
@@ -340,7 +342,7 @@ class ImageWidget(QWidget, StateListener, KeyboardListener):
     def update_zoom_offset(self):
         M = np.float32([[self.zoom * self.img_scale, 0, self.offset.x()],
                         [0, self.zoom * self.img_scale, self.offset.y()]])
-        self.canvas = cv2.warpAffine(self.img, M, (900, 900), borderValue=Theme.get_image_bg(self.state.theme))
+        self.canvas = cv2.warpAffine(self.img, M, (800, 800), borderValue=Theme.get_image_bg(self.state.theme))
 
         self.state.visible_area = self.get_visible_area()
 

@@ -4,7 +4,7 @@ import numpy as np
 class Bbox:
     @staticmethod
     def get_thickness():
-        return 2
+        return 7
 
     @staticmethod
     def get_anchor_size():

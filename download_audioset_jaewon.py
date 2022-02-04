@@ -52,8 +52,10 @@ class downloadYTV():
             
             
             if not os.path.isfile(outputvideo):
-                ydl_opts = {'format': 'bestvideo/best',
+                ydl_opts = {'format': 'bestvideo[ext=mp4]+bestaudio/best',
                             'outtmpl': outputvideo}
+                # ydl_opts = {'format': 'bestvideo/best',
+                #             'outtmpl': outputvideo}
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl: ydl.download([link])
                 
             if not os.path.isfile(outputaudio):
