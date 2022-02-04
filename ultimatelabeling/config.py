@@ -1,5 +1,5 @@
 
-ROOT_DIR        = "D:/Construction_Video/UltimateLabeling_master/"
+ROOT_DIR        = "D:/Construction_Video/UltimateLabeling/"
 
 STATE_PATH      = ROOT_DIR + "state.pkl"
 DATA_DIR        = ROOT_DIR + "data"
