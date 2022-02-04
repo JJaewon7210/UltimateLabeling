@@ -45,11 +45,6 @@ Otherwise, just install the requirements on your main Python environment using `
 pip install -r requirements
 ```
 
-Finally, open the GUI using: 
-```bash
-python -m ultimatelabeling.main
-```
-
 Download the pretrained SiamMask tracking model
 ```bash
 cd /ultimatelabeling/siamMask/pretrained
@@ -66,6 +61,10 @@ RESOURCES_DIR   = ROOT_DIR + "res"
 PRETRAINED_SIAM = ROOT_DIR + "ultimatelabeling/siamMask/pretrained/SiamMask_VOT.pth"
 ```
 
+Finally, open the GUI using: 
+```bash
+python -m ultimatelabeling.main
+```
 
 
 ## Input / output
