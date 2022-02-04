@@ -2,13 +2,10 @@ import os
 import torch
 from .polygon import Polygon, Bbox
 import json
-import socket
-import pickle
 import cv2
-import struct
 from ultimatelabeling.siamMask.models.custom import Custom
 from ultimatelabeling.siamMask.utils.load_helper import load_pretrain
-from ultimatelabeling.siamMask.test import siamese_init, siamese_track, get_image_crop
+from ultimatelabeling.siamMask.test import siamese_init, siamese_track
 from ultimatelabeling.config import RESOURCES_DIR, PRETRAINED_SIAM
 
 

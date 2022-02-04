@@ -1,7 +1,6 @@
 import pickle
 import os
 import glob
-import re
 from PyQt5.QtCore import QThread, QMutex
 from ultimatelabeling.styles import Theme
 from .track_info import TrackInfo

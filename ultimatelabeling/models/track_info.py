@@ -1,12 +1,9 @@
 import json
 import os
 import pandas as pd
-import numpy as np
-import time
 from .polygon import Polygon, Bbox, Keypoints
 from ultimatelabeling.class_names import DEFAULT_CLASS_NAMES, DEFAULT_ACTION_NAMES
 from ultimatelabeling.config import OUTPUT_DIR
-from tqdm import tqdm
 
 import warnings
 warnings.filterwarnings("ignore")
