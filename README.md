@@ -4,17 +4,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PyPI](https://img.shields.io/pypi/pyversions/ultimatelabeling.svg)](https://pypi.python.org/pypi/ultimatelabeling)
 [![PyPI](https://img.shields.io/pypi/v/ultimatelabeling.svg)](https://pypi.python.org/pypi/ultimatelabeling) 
-
 ![GitHub stars](https://img.shields.io/github/stars/alexandre01/UltimateLabeling.svg?style=social)
 
-A multi-purpose Video Labeling GUI in Python with integrated SOTA detector and tracker. Developed using PyQt5.
+
+A multi-purpose Video Labeling (Annotation) GUI in Python with integrated with tracker. Serverless version for ultimatelabeling (alexandre01)
 
 ## Features
-- SSH connection to a remote GPU server (see below to configure the server)
-- YOLO and OpenPifPaf integrated object & pose detectors (single frame/video mode)
-- Hungarian algorithm for track_id assignment
-- SiamMask visual object tracking for missing or mislabeled boxes
-- Zoom on video, resizable bounding boxes and skeletons
+- Serverless SiamMask model for tracking boxes
+- Customizing the Label with double class
+- Zoom on video, resizable bounding boxes
 - Dark mode!
 
 ## Demo 
@@ -24,17 +22,15 @@ A multi-purpose Video Labeling GUI in Python with integrated SOTA detector and t
 
 
 The integrated object detectors and trackers are based on the following codes:
-- [OpenPifPaf](https://github.com/vita-epfl/openpifpaf): for human pose estimation
-- [YOLO darknet](https://github.com/AlexeyAB/darknet): for object detection
 - [SiamMask](https://github.com/foolwood/SiamMask): for visual object tracking
-- [Hungarian algorithm (scipy.optimize)](https://github.com/scipy/scipy): for optimal instance ID assignment
+
 
 
 ## Installation
 
-Start by cloning the repository on your computer:
+Start by cloning the repository on your computer (window)
 ```bash
-git clone https://github.com/alexandre01/UltimateLabeling.git
+git clone https://github.com/JJaewon7210/UltimateLabeling
 cd UltimateLabeling
 ```
 
@@ -55,36 +51,55 @@ Finally, open the GUI using:
 python -m ultimatelabeling.main
 ```
 
-## Remote server configuration
-To configure the remote GPU server (using the code in [server files](https://github.com/alexandre01/UltimateLabeling_server).), follow the steps below:
-
+Download the pretrained SiamMask tracking model
 ```bash
-git clone https://github.com/alexandre01/UltimateLabeling_server.git
-cd UltimateLabeling_server
-pip install -r requirements.txt
-bash siamMask/setup.sh
-bash detection/setup.sh
+cd /ultimatelabeling/siamMask/pretrained
+wget http://www.robots.ox.ac.uk/~qwang/SiamMask_VOT.pth -P pretrained/
 ```
 
-The data images and videos should be placed in the folder `data`, similarly to the client code.
-
-To extract video files, use the following script:
-
+Please check the correct path for your directory from `ultimatelabeling\config.py`
 ```bash
-bash extract.sh data/video_file.mp4
+ROOT_DIR        = "D:/Construction_Video/UltimateLabeling_master/"
+STATE_PATH      = ROOT_DIR + "state.pkl"
+DATA_DIR        = ROOT_DIR + "data"
+OUTPUT_DIR      = ROOT_DIR + "output"
+RESOURCES_DIR   = ROOT_DIR + "res"
+PRETRAINED_SIAM = ROOT_DIR + "ultimatelabeling/siamMask/pretrained/SiamMask_VOT.pth"
 ```
+
 
 
 ## Input / output
 
 To start labeling your videos, put these (folder of images or video file, the frames will be extracted automatically) inside the `data` folder. 
 
-- Import labels: To import existing .CSV labels, hit `Cmd+I` (or `Ctrl+I`). UltimateLabeling expects to read one .CSV file per frame, in the format: "class_id", "xc", "yc", "w", "h".
+- Import labels: To import existing .CSV labels, hit `Cmd+I` (or `Ctrl+I`). UltimateLabeling expects to read one .CSV file per frame, in the format: "class_id", "action_id", "xc", "yc", "w", "h".
 
 - Export labels: The annotations are internally saved in the `output` folder. To export them in a unique .CSV file, hit `Cmd+E` (or `Ctrl+E`) and choose the destination location.
 
-If you need other file formats for your projects, please write a GitHub issue or submit a Pull request.
+If you need other labeling option, check `ultimatelabeling\class_names.py`
+```bash
+DEFAULT_CLASS_NAMES = {
+ 0: 'Excavator',
+ 1: 'Truck',
+ 2: 'Loader',
+ 3: 'Roller',
+ 4: 'Auger',
+}
 
+DEFAULT_ACTION_NAMES = {
+ 0: 'Idle',
+ 1: 'Travel',
+ 2: 'Rotate',
+ 3: 'Dig (Excavator)',
+ 4: 'Unload (Excavator)',
+ 5: 'Dig (Loader)',
+ 6: 'Unload (Loader)',
+ 7: 'Drill (Excavator)',
+ 8: 'Hammer (Auger)',
+ 9: 'Drill (Auger)',
+}
+```
 
 ## Shortcuts / mouse controls
 
@@ -107,9 +122,6 @@ Mouse:
 - Right click: delete bounding box in current frame (+ in all previous / all following frames if the corresponding option is enabled)
 - Scroll wheel (or swipe up/down): zoom in the image 
 
-
-## Improvements / issues
-Please write a GitHub issue if you experience any issue or wish an improvement. Or even better, submit a pull request! 
 
 ## Licence
 Copyright (c) 2019 Alexandre Carlier, released under the MIT licence.
