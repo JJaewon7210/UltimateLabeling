@@ -1,0 +1,12 @@
+PyQt5
+opencv-contrib-python==4.1.2.30
+paramiko
+scp
+pynput
+numpy
+tqdm
+torch
+pillow
+matplotlib
+pandas
+scipy
