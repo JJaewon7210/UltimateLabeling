@@ -256,9 +256,10 @@ class ImageWidget(QWidget, StateListener, KeyboardListener):
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
             h, w, _ = img.shape
-            self.img_scale_height = float(self.height()) / float(h)
-            self.img_scale_width  = float(self.width()) / float(w)
-            self.img_scale = max(self.img_scale_width,self.img_scale_height)
+            if h > w:
+                self.img_scale = float(self.height()) / float(h)
+            else:
+                self.img_scale = float(self.width()) / float(w)
             self.original_img = img.copy()
         else:
             img = self.original_img.copy()
