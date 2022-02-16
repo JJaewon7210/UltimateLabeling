@@ -30,7 +30,8 @@ def draw_detection(img, detection, draw_anchors=True, color=None, kps_show_bbox=
             draw_anchors = False
 
     if detection.bbox:
-        thickness = Bbox.get_thickness()
+        thickness = (img.shape[1]+img.shape[0]) // 600
+        # thickness = Bbox.get_thickness()
         bbox = detection.bbox
 
         if color is None:
@@ -57,13 +58,14 @@ def draw_label(img, bbox, label, thickness, color, height=8):
     b -= thickness / 2, height
     s[0] += thickness
     s[1] = height
-    cv2.rectangle(img, tuple(b.astype(int)), tuple((b + s).astype(int)), color=color, thickness= thickness)
+    
+    fontScale = (img.shape[1]+img.shape[0]) // 2000
 
     b = bbox.pos.copy()
     b[0] += 2 * thickness
     b[1] += 2 * thickness
     cv2.putText(img, label, tuple(b.astype(int)), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
-                fontScale=1.2, color=(255,255,255),  lineType=cv2.LINE_AA, thickness=2)
+                fontScale=fontScale, color=(255,255,255),  lineType=cv2.LINE_AA, thickness=2)
 
 
 def draw_bbox(img, bbox, color=(255, 0, 0), thickness=3, draw_anchors=True):

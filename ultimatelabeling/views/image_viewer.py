@@ -270,7 +270,6 @@ class ImageWidget(QWidget, StateListener, KeyboardListener):
         self.draw_bboxes(img)
         self.draw_stored_area(img)
         self.draw_image(img)
-
         self.anchors_quadtree = AnchorQuadTree(Bbox(0, 0, w, h))
         self.detections_quadtree = DetectionQuadTree(Bbox(0, 0, w, h))
         self.keypoints_quadtree = KeypointQuadTree(Bbox(0, 0, w, h))
