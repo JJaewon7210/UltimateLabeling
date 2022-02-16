@@ -30,8 +30,8 @@ def draw_detection(img, detection, draw_anchors=True, color=None, kps_show_bbox=
             draw_anchors = False
 
     if detection.bbox:
-        thickness = (img.shape[1]+img.shape[0]) // 600
         # thickness = Bbox.get_thickness()
+        thickness = img.shape[1] // 350
         bbox = detection.bbox
 
         if color is None:
@@ -59,13 +59,11 @@ def draw_label(img, bbox, label, thickness, color, height=8):
     s[0] += thickness
     s[1] = height
     
-    fontScale = (img.shape[1]+img.shape[0]) // 2000
-
     b = bbox.pos.copy()
-    b[0] += 2 * thickness
-    b[1] += 2 * thickness
+    b[0] -= 2 * thickness
+    b[1] -= 2 * thickness
     cv2.putText(img, label, tuple(b.astype(int)), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
-                fontScale=fontScale, color=(255,255,255),  lineType=cv2.LINE_AA, thickness=2)
+                fontScale=1.0, color=(255,255,255),  lineType=cv2.LINE_AA, thickness=thickness)
 
 
 def draw_bbox(img, bbox, color=(255, 0, 0), thickness=3, draw_anchors=True):
@@ -111,7 +109,8 @@ def draw_polygon(img, polygon, color=(255, 0, 0), thickness=3):
 
 
 def draw_bbox_anchors(img, bbox, color=(255, 0, 0)):
-    anchors = bbox.get_anchors()
+    FACTOR = img.shape[0] // 250
+    anchors = bbox.get_anchors(factor = FACTOR)
     for anchor in anchors.values():
         x1, y1, x2, y2 = anchor
         cv2.rectangle(img, (int(x1), int(y1)), (int(x2), int(y2)), color=color, thickness=cv2.FILLED)
