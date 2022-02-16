@@ -4,6 +4,8 @@ DEFAULT_CLASS_NAMES = {
  2: 'Loader',
  3: 'Roller',
  4: 'Auger',
+ 5: 'Remicon',
+ 6: 'Dozer'
 }
 
 DEFAULT_ACTION_NAMES = {
